@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youlai.boot.owners.mapper.BusinessOwnersMapper">
+
+    <!-- 获取主人信息分页列表 -->
+    <select id="getBusinessOwnersPage" resultType="com.youlai.boot.owners.model.vo.BusinessOwnersVO">
+        SELECT
+                id,
+                name,
+                phone,
+                email,
+                address,
+                create_time,
+                update_time
+        FROM
+            business_owners
+        <where>
+        </where>
+    </select>
+
+</mapper>
