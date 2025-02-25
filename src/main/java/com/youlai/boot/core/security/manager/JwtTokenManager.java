@@ -50,6 +50,23 @@ public class JwtTokenManager implements TokenManager {
         this.secretKey = securityProperties.getJwt().getKey().getBytes();
     }
 
+
+    public String generateToken(String userName, int ttl) {
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("userName", userName); // 用户ID
+        Date now = new Date();
+        payload.put(JWTPayload.ISSUED_AT, now);
+        // 设置过期时间 -1 表示永不过期
+        if (ttl != -1) {
+            Date expiresAt = DateUtil.offsetSecond(now, ttl);
+            payload.put(JWTPayload.EXPIRES_AT, expiresAt);
+        }
+        payload.put(JWTPayload.JWT_ID, IdUtil.simpleUUID());
+
+        return JWTUtil.createToken(payload, secretKey);
+    }
+
+
     /**
      * 生成令牌
      *
@@ -218,4 +235,6 @@ public class JwtTokenManager implements TokenManager {
 
         return JWTUtil.createToken(payload, secretKey);
     }
+
+
 }

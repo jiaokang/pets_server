@@ -70,6 +70,8 @@ public class SecurityConfig {
                             if (ArrayUtil.isNotEmpty(ignoreUrls)) {
                                 requestMatcherRegistry.requestMatchers(ignoreUrls).permitAll();
                             }
+                            // 允许特定接口匿名访问
+                            requestMatcherRegistry.requestMatchers("/api/**").permitAll(); // 允许 /public/** 路径匿名访问
                             // 其他请求都需要认证
                             requestMatcherRegistry.anyRequest().authenticated();
                         }
