@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwj.pets.mapper.BusinessVaccineMapper">
+
+    <resultMap id="BaseResultMap" type="com.lwj.pets.domain.BusinessVaccine">
+            <id property="id" column="id" />
+            <result property="ownerId" column="owner_id" />
+            <result property="petId" column="pet_id" />
+            <result property="vaccineName" column="vaccine_name" />
+            <result property="vaccineDate" column="vaccine_date" />
+            <result property="nextDate" column="next_date" />
+            <result property="hospital" column="hospital" />
+            <result property="notes" column="notes" />
+            <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,owner_id,pet_id,vaccine_name,vaccine_date,next_date,
+        hospital,notes,create_time
+    </sql>
+</mapper>

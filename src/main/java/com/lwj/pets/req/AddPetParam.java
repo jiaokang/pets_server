@@ -5,6 +5,9 @@ import lombok.Data;
 
 @Data
 public class AddPetParam {
+
+
+
     /**
      * 宠物名称
      */

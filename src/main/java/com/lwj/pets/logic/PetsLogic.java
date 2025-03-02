@@ -9,6 +9,7 @@ import com.lwj.pets.domain.BusinessPets;
 import com.lwj.pets.exception.BusinessException;
 import com.lwj.pets.req.AddPetParam;
 import com.lwj.pets.req.LoginParam;
+import com.lwj.pets.req.UpdatePetParam;
 import com.lwj.pets.res.PetResult;
 import com.lwj.pets.service.BusinessOwnersService;
 import com.lwj.pets.service.BusinessPetsService;
@@ -68,5 +69,21 @@ public class PetsLogic {
         JWT jwt = JWTUtil.parseToken(token);
         Integer ownerId = Integer.valueOf(jwt.getPayload("id").toString());
         businessPetsService.lambdaUpdate().eq(BusinessPets::getOwnerId, ownerId).eq(BusinessPets::getId, petId).remove();
+    }
+    /**
+     * 更新宠物
+     */
+    public void updatePet(UpdatePetParam updatePetParam, String token) {
+        JWT jwt = JWTUtil.parseToken(token);
+        Integer ownerId = Integer.valueOf(jwt.getPayload("id").toString());
+        BusinessPets businessPets = businessPetsService.lambdaQuery().eq(BusinessPets::getOwnerId, ownerId).eq(BusinessPets::getId, updatePetParam.getId()).one();
+        if (businessPets == null) {
+            log.error("宠物不存在");
+            throw new BusinessException(ResultCode.PET_NOT_FOUND);
+        }
+        businessPets.setName(updatePetParam.getName());
+        businessPets.setBreed(updatePetParam.getBreed());
+        businessPets.setAge(updatePetParam.getAge());
+        businessPetsService.updateById(businessPets);
     }
 }

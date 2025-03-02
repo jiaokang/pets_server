@@ -163,98 +163,17 @@ public enum ResultCode implements IResultCode, Serializable {
     USER_SPEAKER_EXCEPTION("A1004", "用户扬声器异常"),
     USER_GPS_POSITIONING_EXCEPTION("A1005", "用户 GPS 定位异常"),
 
-    /** 一级宏观错误码  */
-    SYSTEM_ERROR("B0001", "系统执行出错"),
 
-    /** 二级宏观错误码  */
-    SYSTEM_EXECUTION_TIMEOUT("B0100", "系统执行超时"),
-
-    /** 二级宏观错误码  */
-    SYSTEM_DISASTER_RECOVERY_FUNCTION_TRIGGERED("B0200", "系统容灾功能被触发"),
-
-    SYSTEM_RATE_LIMITING("B0210", "系统限流"),
-
-    SYSTEM_FUNCTION_DEGRADATION("B0220", "系统功能降级"),
-
-    /** 二级宏观错误码  */
-    SYSTEM_RESOURCE_EXCEPTION("B0300", "系统资源异常"),
-    SYSTEM_RESOURCE_EXHAUSTED("B0310", "系统资源耗尽"),
-    SYSTEM_DISK_SPACE_EXHAUSTED("B0311", "系统磁盘空间耗尽"),
-    SYSTEM_MEMORY_EXHAUSTED("B0312", "系统内存耗尽"),
-    FILE_HANDLE_EXHAUSTED("B0313", "文件句柄耗尽"),
-    SYSTEM_CONNECTION_POOL_EXHAUSTED("B0314", "系统连接池耗尽"),
-    SYSTEM_THREAD_POOL_EXHAUSTED("B0315", "系统线程池耗尽"),
-
-    SYSTEM_RESOURCE_ACCESS_EXCEPTION("B0320", "系统资源访问异常"),
-    SYSTEM_READ_DISK_FILE_FAILED("B0321", "系统读取磁盘文件失败"),
+    PET_NOT_FOUND("P0001", "宠物不存在"),
 
 
-    /** 一级宏观错误码  */
-    THIRD_PARTY_SERVICE_ERROR("C0001", "调用第三方服务出错"),
 
-    /** 二级宏观错误码  */
-    MIDDLEWARE_SERVICE_ERROR("C0100", "中间件服务出错"),
 
-    RPC_SERVICE_ERROR("C0110", "RPC 服务出错"),
-    RPC_SERVICE_NOT_FOUND("C0111", "RPC 服务未找到"),
-    RPC_SERVICE_NOT_REGISTERED("C0112", "RPC 服务未注册"),
-    INTERFACE_NOT_EXIST("C0113", "接口不存在"),
+    SYSTEM_ERROR("S0001", "系统执行出错"),;
 
-    MESSAGE_SERVICE_ERROR("C0120", "消息服务出错"),
-    MESSAGE_DELIVERY_ERROR("C0121", "消息投递出错"),
-    MESSAGE_CONSUMPTION_ERROR("C0122", "消息消费出错"),
-    MESSAGE_SUBSCRIPTION_ERROR("C0123", "消息订阅出错"),
-    MESSAGE_GROUP_NOT_FOUND("C0124", "消息分组未查到"),
 
-    CACHE_SERVICE_ERROR("C0130", "缓存服务出错"),
-    KEY_LENGTH_EXCEEDS_LIMIT("C0131", "key 长度超过限制"),
-    VALUE_LENGTH_EXCEEDS_LIMIT("C0132", "value 长度超过限制"),
-    STORAGE_CAPACITY_FULL("C0133", "存储容量已满"),
-    UNSUPPORTED_DATA_FORMAT("C0134", "不支持的数据格式"),
 
-    CONFIGURATION_SERVICE_ERROR("C0140", "配置服务出错"),
 
-    NETWORK_RESOURCE_SERVICE_ERROR("C0150", "网络资源服务出错"),
-    VPN_SERVICE_ERROR("C0151", "VPN 服务出错"),
-    CDN_SERVICE_ERROR("C0152", "CDN 服务出错"),
-    DOMAIN_NAME_RESOLUTION_SERVICE_ERROR("C0153", "域名解析服务出错"),
-    GATEWAY_SERVICE_ERROR("C0154", "网关服务出错"),
-
-    /** 二级宏观错误码  */
-    THIRD_PARTY_SYSTEM_EXECUTION_TIMEOUT("C0200", "第三方系统执行超时"),
-
-    RPC_EXECUTION_TIMEOUT("C0210", "RPC 执行超时"),
-
-    MESSAGE_DELIVERY_TIMEOUT("C0220", "消息投递超时"),
-
-    CACHE_SERVICE_TIMEOUT("C0230", "缓存服务超时"),
-
-    CONFIGURATION_SERVICE_TIMEOUT("C0240", "配置服务超时"),
-
-    DATABASE_SERVICE_TIMEOUT("C0250", "数据库服务超时"),
-
-    /** 二级宏观错误码  */
-    DATABASE_SERVICE_ERROR("C0300", "数据库服务出错"),
-
-    TABLE_NOT_EXIST("C0311", "表不存在"),
-    COLUMN_NOT_EXIST("C0312", "列不存在"),
-
-    MULTIPLE_SAME_NAME_COLUMNS_IN_MULTI_TABLE_ASSOCIATION("C0321", "多表关联中存在多个相同名称的列"),
-
-    DATABASE_DEADLOCK("C0331", "数据库死锁"),
-
-    PRIMARY_KEY_CONFLICT("C0341", "主键冲突"),
-
-    /** 二级宏观错误码  */
-    THIRD_PARTY_DISASTER_RECOVERY_SYSTEM_TRIGGERED("C0400", "第三方容灾系统被触发"),
-    THIRD_PARTY_SYSTEM_RATE_LIMITING("C0401", "第三方系统限流"),
-    THIRD_PARTY_FUNCTION_DEGRADATION("C0402", "第三方功能降级"),
-
-    /** 二级宏观错误码  */
-    NOTIFICATION_SERVICE_ERROR("C0500", "通知服务出错"),
-    SMS_REMINDER_SERVICE_FAILED("C0501", "短信提醒服务失败"),
-    VOICE_REMINDER_SERVICE_FAILED("C0502", "语音提醒服务失败"),
-    EMAIL_REMINDER_SERVICE_FAILED("C0503", "邮件提醒服务失败");
 
 
     @Override
