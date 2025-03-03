@@ -34,6 +34,10 @@ public class BusinessPets {
      * 年龄
      */
     private Integer age;
+    /**
+     * 体重
+     */
+    private Float weight;
 
     /**
      * 关联主人ID

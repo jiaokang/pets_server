@@ -22,4 +22,8 @@ public class AddPetParam {
      * 年龄
      */
     private Integer age;
+    /**
+     * 体重
+     */
+    private Float weight;
 }
