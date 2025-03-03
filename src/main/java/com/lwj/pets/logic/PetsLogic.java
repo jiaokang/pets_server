@@ -42,7 +42,7 @@ public class PetsLogic {
         businessPets.setName(addPetParam.getName());
         businessPets.setBreed(addPetParam.getBreed());
         businessPets.setAge(addPetParam.getAge());
-        businessPets.setWeight(addPetParam.getWeight());
+        businessPets.setSex(addPetParam.getSex());
         businessPetsService.save(businessPets);
     }
 
@@ -59,7 +59,7 @@ public class PetsLogic {
             petResult.setName(businessPet.getName());
             petResult.setBreed(businessPet.getBreed());
             petResult.setAge(businessPet.getAge());
-            petResult.setWeight(businessPet.getWeight());
+            petResult.setSex(businessPet.getSex());
             return petResult;
         }).toList();
     }
@@ -86,7 +86,7 @@ public class PetsLogic {
         businessPets.setName(updatePetParam.getName());
         businessPets.setBreed(updatePetParam.getBreed());
         businessPets.setAge(updatePetParam.getAge());
-        businessPets.setWeight(updatePetParam.getWeight());
+        businessPets.setSex(updatePetParam.getSex());
         businessPetsService.updateById(businessPets);
     }
 }

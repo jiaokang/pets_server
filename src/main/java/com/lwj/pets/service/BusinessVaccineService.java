@@ -3,6 +3,8 @@ package com.lwj.pets.service;
 import com.lwj.pets.domain.BusinessVaccine;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author 81170
 * @description 针对表【business_vaccine(宠物疫苗记录表)】的数据库操作Service
@@ -10,4 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface BusinessVaccineService extends IService<BusinessVaccine> {
 
+    List<BusinessVaccine> getVaccineRecordByOwnerId(Integer ownerId);
 }

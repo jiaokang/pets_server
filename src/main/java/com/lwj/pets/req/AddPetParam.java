@@ -23,7 +23,7 @@ public class AddPetParam {
      */
     private Integer age;
     /**
-     * 体重
+     * 性别
      */
-    private Float weight;
+    private Integer sex;
 }

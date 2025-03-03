@@ -190,7 +190,7 @@ public class GlobalExceptionHandler {
         log.error(e.getMessage(), e);
         String errorMsg = e.getMessage();
         if (StrUtil.isNotBlank(errorMsg) && errorMsg.contains("denied to user")) {
-            return Result.failed(ResultCode.ACCESS_UNAUTHORIZED);
+            return Result.failed(ResultCode.SYSTEM_ERROR);
         } else {
             return Result.failed(e.getMessage());
         }
