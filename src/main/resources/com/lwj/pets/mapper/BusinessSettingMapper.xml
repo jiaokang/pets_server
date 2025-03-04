@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwj.pets.mapper.BusinessSettingMapper">
+
+    <resultMap id="BaseResultMap" type="com.lwj.pets.domain.BusinessSetting">
+            <id property="id" column="id" />
+            <result property="ownerId" column="owner_id" />
+            <result property="settingName" column="setting_name" />
+            <result property="settingCode" column="setting_code" />
+            <result property="settingValue" column="setting_value" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,owner_id,setting_name,setting_code,setting_value
+    </sql>
+</mapper>

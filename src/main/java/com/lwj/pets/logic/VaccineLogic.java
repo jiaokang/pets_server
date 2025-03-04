@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.lwj.pets.utils.DateUtils.getGap;
+import static com.lwj.pets.utils.DateUtils.nextDate;
+
 @Slf4j
 @Component
 public class VaccineLogic {
@@ -51,27 +54,13 @@ public class VaccineLogic {
         businessVaccine.setVaccineName(addVaccineParam.getVaccineName());
         businessVaccine.setVaccineDate(addVaccineParam.getVaccineDate());
         businessVaccine.setHospital(addVaccineParam.getHospital());
-        businessVaccine.setNextDate(nextVaccineDate(addVaccineParam.getVaccineDate(), addVaccineParam.getGap()));
+        businessVaccine.setNextDate(nextDate(addVaccineParam.getVaccineDate(), addVaccineParam.getGap()));
         businessVaccine.setNotes(addVaccineParam.getNotes());
         businessVaccineService.save(businessVaccine);
     }
 
 
-    /**
-     * 根据间隔月数计算下次接种时间
-     */
-    private LocalDate nextVaccineDate(LocalDate vaccineDate, Integer gap) {
-        return vaccineDate.plusMonths(gap);
-    }
 
-    private int getVaccineGap(LocalDate vaccineDate, LocalDate nextDate) {
-        // 确保 nextDate 晚于 vaccineDate
-        if (nextDate.isBefore(vaccineDate)) {
-            throw new IllegalArgumentException("nextDate must be after vaccineDate");
-        }
-        // 计算两个日期相差的总月数
-        return (int) ChronoUnit.MONTHS.between(vaccineDate, nextDate);
-    }
 
     public List<VaccineRecord> getVaccineRecord(Integer petId, String token) {
         Integer ownerId = TokenUtils.getOwnerId(token);
@@ -95,7 +84,7 @@ public class VaccineLogic {
                 vaccineRecord.setNextDate(businessVaccine.getNextDate());
                 vaccineRecord.setHospital(businessVaccine.getHospital());
                 vaccineRecord.setNotes(businessVaccine.getNotes());
-                vaccineRecord.setGap(getVaccineGap(businessVaccine.getVaccineDate(), businessVaccine.getNextDate()));
+                vaccineRecord.setGap(getGap(businessVaccine.getVaccineDate(), businessVaccine.getNextDate()));
                 return vaccineRecord;
             }).collect(Collectors.toList());
         }
@@ -122,7 +111,7 @@ public class VaccineLogic {
         businessVaccine.setVaccineName(editVaccineParam.getVaccineName());
         businessVaccine.setVaccineDate(editVaccineParam.getVaccineDate());
         businessVaccine.setHospital(editVaccineParam.getHospital());
-        businessVaccine.setNextDate(nextVaccineDate(editVaccineParam.getVaccineDate(), editVaccineParam.getGap()));
+        businessVaccine.setNextDate(nextDate(editVaccineParam.getVaccineDate(), editVaccineParam.getGap()));
         businessVaccine.setNotes(editVaccineParam.getNotes());
         businessVaccine.setPetId(editVaccineParam.getPetId());
         businessVaccineService.updateById(businessVaccine);
