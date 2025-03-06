@@ -103,7 +103,7 @@ public class VaccineLogic {
      */
     public void updateVaccineRecord(EditVaccineParam editVaccineParam, String token) {
         Integer ownerId = TokenUtils.getOwnerId(token);
-        BusinessVaccine businessVaccine = businessVaccineService.getById(editVaccineParam.getId());
+        BusinessVaccine businessVaccine = businessVaccineService.lambdaQuery().eq(BusinessVaccine::getId, editVaccineParam.getId()).eq(BusinessVaccine::getOwnerId, ownerId).one();
         if (businessVaccine == null) {
             log.error("接种记录不存在");
             throw new BusinessException(ResultCode.VACCINE_NOT_FOUND);

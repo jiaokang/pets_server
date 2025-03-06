@@ -5,6 +5,7 @@ import com.lwj.pets.common.Result;
 import com.lwj.pets.logic.DewormLogic;
 import com.lwj.pets.logic.VaccineLogic;
 import com.lwj.pets.req.deworm.AddDewormParam;
+import com.lwj.pets.req.deworm.EditDewormParam;
 import com.lwj.pets.req.vaccine.AddVaccineParam;
 import com.lwj.pets.req.vaccine.EditVaccineParam;
 import com.lwj.pets.res.deworm.DewormRecord;
@@ -33,7 +34,7 @@ public class DewormApiController {
     }
 
     /**
-     * 获取接种信息
+     * 获取驱虫信息
      */
     @GetMapping("/get")
     public Result<List<DewormRecord>> getPets(@RequestParam(value ="petId",required = false)Integer petId, @RequestHeader("Authorization") String token) {
@@ -43,21 +44,21 @@ public class DewormApiController {
 
 
 
-//    /**
-//     * 删除接种信息
-//     */
-//    @PostMapping("/delete")
-//    public Result<Void> deletePet(@RequestBody EditVaccineParam deleteVaccineParam, @RequestHeader("Authorization") String token) {
-//        vaccineLogic.deleteVaccineRecord(deleteVaccineParam.getId(),token);
-//        return Result.success();
-//    }
-//    /**
-//     * 修改接种信息
-//     */
-//    @PostMapping("/update")
-//    public Result<Void> updatePet(@RequestBody EditVaccineParam editVaccineParam, @RequestHeader("Authorization") String token) {
-//        vaccineLogic.updateVaccineRecord(editVaccineParam,token);
-//        return Result.success();
-//    }
+    /**
+     * 删除驱虫信息
+     */
+    @PostMapping("/delete")
+    public Result<Void> deletePet(@RequestBody EditDewormParam editDewormParam, @RequestHeader("Authorization") String token) {
+        dewormLogic.deleteDewormRecord(editDewormParam.getId(),token);
+        return Result.success();
+    }
+    /**
+     * 修改驱虫信息
+     */
+    @PostMapping("/update")
+    public Result<Void> updatePet(@RequestBody EditDewormParam editDewormParam, @RequestHeader("Authorization") String token) {
+        dewormLogic.updateDewormRecord(editDewormParam,token);
+        return Result.success();
+    }
 
 }

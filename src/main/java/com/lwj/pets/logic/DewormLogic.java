@@ -6,6 +6,7 @@ import com.lwj.pets.domain.BusinessPets;
 import com.lwj.pets.domain.BusinessVaccine;
 import com.lwj.pets.exception.BusinessException;
 import com.lwj.pets.req.deworm.AddDewormParam;
+import com.lwj.pets.req.deworm.EditDewormParam;
 import com.lwj.pets.req.vaccine.AddVaccineParam;
 import com.lwj.pets.req.vaccine.EditVaccineParam;
 import com.lwj.pets.res.deworm.DewormRecord;
@@ -92,5 +93,27 @@ public class DewormLogic {
                 return dewormRecord;
             }).collect(Collectors.toList());
         }
+    }
+
+    public void deleteDewormRecord(Integer id, String token) {
+        Integer ownerId = TokenUtils.getOwnerId(token);
+        businessDewormingService.lambdaUpdate().eq(BusinessDeworming::getId, id).eq(BusinessDeworming::getOwnerId, ownerId).remove();
+    }
+
+    public void updateDewormRecord(EditDewormParam editDewormParam, String token) {
+        Integer ownerId = TokenUtils.getOwnerId(token);
+        businessDewormingService.lambdaQuery().eq(BusinessDeworming::getId, editDewormParam.getId()).eq(BusinessDeworming::getOwnerId, ownerId)
+                .oneOpt().ifPresent(businessDeworming -> {
+                    businessDeworming.setPetId(editDewormParam.getPetId());
+                    businessDeworming.setDewormType(editDewormParam.getDewormType());
+                    businessDeworming.setProductName(editDewormParam.getProductName());
+                    businessDeworming.setMetering(editDewormParam.getMetering());
+                    businessDeworming.setWeight(editDewormParam.getWeight());
+                    businessDeworming.setDewormDate(editDewormParam.getDewormDate());
+                    businessDeworming.setAddress(editDewormParam.getAddress());
+                    businessDeworming.setNotes(editDewormParam.getNotes());
+                    businessDeworming.setNextDate(nextDate(editDewormParam.getDewormDate(), editDewormParam.getGap()));
+                    businessDewormingService.updateById(businessDeworming);
+                });
     }
 }
