@@ -21,6 +21,7 @@ public enum ResultCode implements IResultCode, Serializable {
 
 
     USER_PASSWORD_ERROR("A0001", "用户名或密码错误"),
+    EMAIL_CODE_ERROR("A0002", "邮箱验证码错误或已过期"),
 
 
     PET_NOT_FOUND("P0001", "宠物不存在"),

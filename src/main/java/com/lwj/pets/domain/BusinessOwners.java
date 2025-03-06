@@ -4,12 +4,17 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
+
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 主人信息表
  * @TableName business_owners
  */
+@Builder
+@Accessors(chain = true)
 @TableName(value ="business_owners")
 @Data
 public class BusinessOwners {

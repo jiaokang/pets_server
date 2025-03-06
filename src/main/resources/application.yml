@@ -7,3 +7,22 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/pets?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     username: root
     password: a@111111
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: 811708046@qq.com
+    password: 1234567890
+    default-encoding: utf-8
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true           # 启用认证
+          starttls.enable: true # 启用 TLS
+          ssl.enable: true      # 启用 SSL 加密
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: a@111111
+      database: 0

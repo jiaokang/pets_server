@@ -4,8 +4,9 @@ package com.lwj.pets.req;
 import lombok.Data;
 
 @Data
-public class LoginByEmailParam {
+public class RegisterParam {
+    private String username;
     private String email;
+    private String password;
     private String code;
-    private boolean remember;
 }
