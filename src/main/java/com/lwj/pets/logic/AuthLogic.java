@@ -12,12 +12,14 @@ import com.lwj.pets.req.LoginByEmailParam;
 import com.lwj.pets.req.LoginParam;
 import com.lwj.pets.req.RegisterParam;
 import com.lwj.pets.service.BusinessOwnersService;
+import com.lwj.pets.service.BusinessSettingService;
 import com.lwj.pets.service.EmailService;
 import jakarta.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,10 +38,13 @@ public class AuthLogic {
     EmailService emailService;
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    BusinessSettingService businessSettingService;
 
     /*
      * 注册
      */
+    @Transactional
     public void register(RegisterParam registerParam) {
         verifyCode(registerParam.getEmail(), registerParam.getCode());
         BusinessOwners businessOwners = BusinessOwners.builder()
@@ -49,6 +54,8 @@ public class AuthLogic {
                 .email(registerParam.getEmail())
                 .build();
         businessOwnersService.save(businessOwners);
+        // 用户注册时初始化用户设置项
+        businessSettingService.initSettingItem(businessOwners.getId());
     }
 
 
