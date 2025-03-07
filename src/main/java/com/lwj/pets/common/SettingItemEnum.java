@@ -1,10 +1,14 @@
 package com.lwj.pets.common;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @Author ：焦康
  * @Date ：Created in 20:45 2025/3/4
  * @Desc ：
  */
+@Getter
 public enum SettingItemEnum {
 
 

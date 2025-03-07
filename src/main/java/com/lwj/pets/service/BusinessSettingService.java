@@ -16,5 +16,8 @@ public interface BusinessSettingService extends IService<BusinessSetting> {
      * 获取指定值的设置项目
      */
     List<BusinessSetting> getSpecialSetting(String settingCode,String settingValue);
-
+    /**
+     * 初始化设置项目
+     */
+    void initSettingItem(Integer ownerId);
 }
