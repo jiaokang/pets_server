@@ -26,4 +26,6 @@ public class PetResult {
      * 性别
      */
     private Integer sex;
+
+    private String avatar;
 }

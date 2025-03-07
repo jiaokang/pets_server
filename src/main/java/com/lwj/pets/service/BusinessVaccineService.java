@@ -2,6 +2,7 @@ package com.lwj.pets.service;
 
 import com.lwj.pets.domain.BusinessVaccine;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lwj.pets.tasks.EmailNotify;
 
 import java.util.List;
 
@@ -13,4 +14,7 @@ import java.util.List;
 public interface BusinessVaccineService extends IService<BusinessVaccine> {
 
     List<BusinessVaccine> getVaccineRecordByOwnerId(Integer ownerId);
+
+
+    List<EmailNotify> getVaccineNotifyByOwnerId(Integer ownerId);
 }

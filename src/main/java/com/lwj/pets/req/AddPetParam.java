@@ -2,6 +2,7 @@ package com.lwj.pets.req;
 
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class AddPetParam {
@@ -26,4 +27,6 @@ public class AddPetParam {
      * 性别
      */
     private Integer sex;
+
+    private String avatar;
 }

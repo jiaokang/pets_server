@@ -2,6 +2,9 @@ package com.lwj.pets.service;
 
 import com.lwj.pets.domain.BusinessDeworming;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lwj.pets.tasks.EmailNotify;
+
+import java.util.List;
 
 /**
 * @author 81170
@@ -10,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface BusinessDewormingService extends IService<BusinessDeworming> {
 
+    List<EmailNotify> getDewormingNotifyByOwnerId(Integer ownerId);
 }

@@ -11,7 +11,7 @@ spring:
     host: smtp.qq.com
     port: 465
     username: 811708046@qq.com
-    password: 1234567890
+    password: vsralafupoudbahd
     default-encoding: utf-8
     protocol: smtp
     properties:
@@ -26,3 +26,5 @@ spring:
       port: 6379
       password: a@111111
       database: 0
+
+profile-path: E:\pets_server\profile

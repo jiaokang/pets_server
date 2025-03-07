@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统通知</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            max-width: 100px;
+            height: auto;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .pet-info {
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="cid:logoId" alt="Company Logo">
+        <h2> <span th:text="${eventType}"></span>提醒</h2>
+    </div>
+    <div class="content">
+        <p>亲爱的<span th:text="${petOwnerName}">大人</span>，您的宠物<span th:text="${petName}">宠物名</span>需要<span th:text="${eventType}"></span>。</p>
+        <div class="pet-info">
+            <p>日期：<span th:text="${date}"></span></p>
+        </div>
+        <p>请确保在指定日期带您的宠物到指定地点进行<span th:text="${eventType}"></span>。</p>
+        <p>如果您没有相关操作，请忽略此邮件</p>
+    </div>
+    <div class="footer">
+        <p>© <span th:text="${currentYear}">2025</span>猫猫科技. 版权所有.</p>
+    </div>
+</div>
+</body>
+</html>

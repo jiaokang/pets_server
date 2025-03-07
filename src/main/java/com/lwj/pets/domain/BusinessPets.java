@@ -45,7 +45,7 @@ public class BusinessPets {
     private Integer ownerId;
 
     /**
-     * 宠物照片路径
+     * 宠物照片
      */
     private String profileImagePath;
 
