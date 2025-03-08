@@ -24,7 +24,7 @@ public class AuthApiController {
      * 注册
      */
     @PostMapping("/register")
-    public Result<Void> register(@RequestBody RegisterParam registerParam){
+    public Result<Void> register(@RequestBody RegisterParam registerParam) {
         authLogic.register(registerParam);
         return Result.success();
     }
@@ -33,8 +33,8 @@ public class AuthApiController {
      * 登录
      */
     @PostMapping("/login")
-    public Result<Map<String,Object>> login(@RequestBody LoginParam loginParam){
-        HashMap<String,Object> map = authLogic.login(loginParam);
+    public Result<Map<String, Object>> login(@RequestBody LoginParam loginParam) {
+        HashMap<String, Object> map = authLogic.login(loginParam);
         return Result.success(map);
     }
 
@@ -43,7 +43,7 @@ public class AuthApiController {
      * 获取邮箱验证码
      */
     @GetMapping("/getEmailVerifyCode")
-    public Result<Map<String,Object>> getEmailVerifyCode(@RequestParam("email") String email){
+    public Result<Map<String, Object>> getEmailVerifyCode(@RequestParam("email") String email) {
         authLogic.getEmailVerifyCode(email);
         return Result.success();
     }
@@ -53,9 +53,19 @@ public class AuthApiController {
      * 登录
      */
     @PostMapping("/loginByEmail")
-    public Result<Map<String,Object>> loginByEmail(@RequestBody LoginByEmailParam loginByEmailParam){
-        HashMap<String,Object> map = authLogic.loginByEmail(loginByEmailParam);
+    public Result<Map<String, Object>> loginByEmail(@RequestBody LoginByEmailParam loginByEmailParam) {
+        HashMap<String, Object> map = authLogic.loginByEmail(loginByEmailParam);
         return Result.success(map);
+    }
+
+
+    /**
+     * 退出登录
+     */
+    @PostMapping("/logout")
+    public Result<Void> logout(@RequestHeader("Authorization") String token) {
+        authLogic.logout(token);
+        return Result.success();
     }
 
 }

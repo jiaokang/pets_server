@@ -76,8 +76,14 @@ public class AuthLogic {
             log.error("密码错误");
             throw new BusinessException(ResultCode.USER_PASSWORD_ERROR);
         }
+        String token = getToken(dbOwner);
         HashMap<String, Object> map = new HashMap<>();
-        map.put("token", getToken(dbOwner));
+        map.put("token", token);
+        if (remember) {
+            redisTemplate.opsForValue().set(CommonConst.TOKEN_REDIS_PREFIX + token, dbOwner.getId(), 10080, TimeUnit.MINUTES);
+        } else {
+            redisTemplate.opsForValue().set(CommonConst.TOKEN_REDIS_PREFIX + token, dbOwner.getId(), 30, TimeUnit.MINUTES);
+        }
         map.put("name", dbOwner.getName());
         map.put("nickName", dbOwner.getNickName());
         return map;
@@ -112,14 +118,21 @@ public class AuthLogic {
     public HashMap<String, Object> loginByEmail(LoginByEmailParam loginByEmailParam) {
         String email = loginByEmailParam.getEmail();
         String code = loginByEmailParam.getCode();
+        boolean remember = loginByEmailParam.isRemember();
         verifyCode(email, code);
         BusinessOwners businessOwners = businessOwnersService.lambdaQuery().eq(BusinessOwners::getEmail, email).one();
         if (businessOwners == null) {
             log.error("用户不存在");
             throw new BusinessException(ResultCode.USER_PASSWORD_ERROR);
         }
+        String token = getToken(businessOwners);
         HashMap<String, Object> map = new HashMap<>();
-        map.put("token", getToken(businessOwners));
+        map.put("token", token);
+        if (remember) {
+            redisTemplate.opsForValue().set(CommonConst.TOKEN_REDIS_PREFIX + token, businessOwners.getId(), 10080, TimeUnit.MINUTES);
+        } else {
+            redisTemplate.opsForValue().set(CommonConst.TOKEN_REDIS_PREFIX + token, businessOwners.getId(), 30, TimeUnit.MINUTES);
+        }
         map.put("name", businessOwners.getName());
         map.put("nickName", businessOwners.getNickName());
         return map;
@@ -133,5 +146,10 @@ public class AuthLogic {
         }
     }
 
-
+    /*
+     * 退出登录
+     */
+    public void logout(String token) {
+        redisTemplate.delete(CommonConst.TOKEN_REDIS_PREFIX + token);
+    }
 }

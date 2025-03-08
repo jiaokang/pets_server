@@ -6,4 +6,5 @@ public class CommonConst {
 
     //邮箱验证码redis前缀
     public static final String EMAIL_CODE_REDIS_PREFIX = "code:email";
+    public static final String TOKEN_REDIS_PREFIX = "token:";
 }
